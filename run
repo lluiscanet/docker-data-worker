@@ -1,1 +1,1 @@
-docker run -v `pwd`/log:/var/log -d -t ssh
+docker run -v `pwd`/log:/var/log -v `pwd`:/docker -v `pwd`/azkaban/conf:/azkaban-web-2.5.0/conf -p 49443:8443 -p 23:22 -d -t data-worker /usr/sbin/runsvdir-start

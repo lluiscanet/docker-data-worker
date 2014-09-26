@@ -1,0 +1,6 @@
+#!/bin/sh
+sv start azkaban-executor || exit 1
+sleep 30
+cd /azkaban-web-2.5.0
+exec 2>&1
+exec /azkaban-web-2.5.0/bin/azkaban-web-start.sh

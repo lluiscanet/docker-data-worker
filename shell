@@ -1,1 +1,2 @@
-docker run -v `pwd`:/docker --rm -i -t ssh /bin/bash
+# To start all processes run '/usr/sbin/runsvdir-start'
+docker run -v `pwd`:/docker -v `pwd`/azkaban/conf:/azkaban-web-2.5.0/conf -p 49443:8443 --rm -i -t data-worker /bin/bash

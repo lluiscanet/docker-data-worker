@@ -1,0 +1,5 @@
+#!/bin/sh
+sv start mysql || exit 1
+sleep 30
+exec 2>&1
+exec /azkaban-executor-2.5.0/bin/azkaban-executor-start.sh
