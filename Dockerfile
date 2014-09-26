@@ -66,50 +66,29 @@ RUN mysqld & sleep 3 && \
 
 
 
-## ************************** Installing Python requirements ****************************************************
-##Required by Python packages
-#RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential python-dev python-pip liblapack-dev libatlas-dev gfortran libfreetype6 libfreetype6-dev libpng12-dev python-lxml libyaml-dev g++ libffi-dev pkg-config
-#
-##Upgrade pip
-#RUN pip install -U setuptools
-#RUN pip install -U pip
-##matplotlib needs latest distribute
-#RUN pip install -U distribute
-#
-##Pandas
-#RUN pip install pandas
-##Optional
-#RUN pip install cython
-#RUN pip install jinja2 pyzmq tornado
-#RUN pip install numexpr bottleneck scipy pygments matplotlib sympy pymc
-#RUN pip install patsy
-#RUN pip install statsmodels
-#RUN pip install beautifulsoup4 html5lib
-##Pattern
-#RUN pip install --allow-external pattern
-##NLTK
-#RUN pip install pyyaml nltk
-##Networkx
-#RUN pip install networkx
-##Biopython
-#RUN pip install biopython
-#
-##Install R 3+
-#RUN echo 'deb http://cran.rstudio.com/bin/linux/ubuntu trusty/' > /etc/apt/sources.list.d/r.list
-#RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-#RUN apt-get update
-#RUN apt-get install -y r-base
-##Rmagic
-#RUN pip install rpy2
-#
-##Vincent
-#RUN pip install vincent
-#
-##Scikit-learn
-#RUN pip install -U scikit-learn
-##PyMongo
-#RUN pip install pymongo
-#
+# ************************** Installing Python requirements ****************************************************
+#Required by Python packages
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential python-dev python-pip liblapack-dev libatlas-dev gfortran libfreetype6 libfreetype6-dev libpng12-dev python-lxml libyaml-dev g++ libffi-dev pkg-config
+
+#Upgrade pip
+RUN pip install -U setuptools
+RUN pip install -U pip
+#matplotlib needs latest distribute
+RUN pip install -U distribute
+#Installing numpy
+RUN pip install -U numpy scipy pandas scikit-learn patsy
+
+#Pandas
+RUN pip install pandas cython jinja2 pyzmq tornado numexpr bottleneck scipy pygments matplotlib sympy pymc statsmodels beautifulsoup4 html5lib
+
+#Pattern
+RUN pip install --allow-external pattern
+#NLTK
+RUN pip install pyyaml nltk networkx biopython vincent
+
+#PyMongo
+RUN pip install pymongo gspread paramiko facebook pexpect
+
 EXPOSE 22 8443
 
 
