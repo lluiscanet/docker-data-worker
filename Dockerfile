@@ -51,16 +51,11 @@ RUN wget -O /azkaban-web-2.5.0/extlib/mysql-connector-java-5.1.26.jar http://sea
 #Configure
 RUN mkdir /tmp/web && sed -i -e "s|^tmpdir=|tmpdir=/tmp/web|" -e "s|&||" /azkaban-web-2.5.0/bin/azkaban-web-start.sh && \
     mkdir /tmp/executor && sed -i -e "s|^tmpdir=|tmpdir=/tmp/executor|" -e "s|&||" /azkaban-executor-2.5.0/bin/azkaban-executor-start.sh && \
-    sed -i -e "s|^executor.global.properties.*|executor.global.properties=/azkaban-executor-2.5.0/conf/global.properties|" -e "s|^user.manager.xml.file.*|user.manager.xml.file=/azkaban-web-2.5.0/conf/azkaban-users.xml|" /azkaban-web-2.5.0/conf/azkaban.properties &&\
     sed -i -e "s|^executor.global.properties.*|executor.global.properties=/azkaban-executor-2.5.0/conf/global.properties|" -e "s|azkaban2|azkaban|" /azkaban-executor-2.5.0/conf/azkaban.properties &&\
-    sed -i -e "s|azkaban.project.dir.*|azkaban.project.dir=/docker/projects|" /azkaban-web-2.5.0/conf/azkaban.properties &&\
     sed -i -e "s|azkaban.project.dir.*|azkaban.project.dir=/docker/projects|" /azkaban-executor-2.5.0/conf/azkaban.properties &&\
     cd /etc/service/azkaban-web && \
     keytool -keystore keystore -alias jetty -genkey -keyalg RSA -keypass password -storepass password -dname "CN=Unknown, OU=Unknown, O=Unknown,L=Unknown, ST=Unknown, C=Unknown" && \
     cp -r keystore /azkaban-web-2.5.0/
-
-#Personalization
-RUN sed -i -e "s|azkaban.name.*|/azkaban.name=Data Worker|" -e "s|azkaban.label.*|azkaban.label=Power Your Data Scripts|" /azkaban-web-2.5.0/bin/azkaban-web-start.sh
 
 #Init MySql
 ADD /azkaban/mysql.ddl mysql.ddl
