@@ -10,3 +10,4 @@ Docker instance to power your data scripting needs. Include in documentation:
 - Adding or modifying mysql credentials
 - How to acces azkaban UI
 - How to expand components
+- e-mail notification limitations
