@@ -49,9 +49,7 @@ RUN wget https://s3.amazonaws.com/azkaban2/azkaban2/2.5.0/azkaban-sql-script-2.5
 RUN wget -O /azkaban-web-2.5.0/extlib/mysql-connector-java-5.1.26.jar http://search.maven.org/remotecontent?filepath=mysql/mysql-connector-java/5.1.26/mysql-connector-java-5.1.26.jar && cp /azkaban-web-2.5.0/extlib/mysql-connector-java-5.1.26.jar /azkaban-executor-2.5.0/extlib/mysql-connector-java-5.1.26.jar
 
 #Configure
-RUN mkdir /tmp/web && sed -i -e "s|^tmpdir=|tmpdir=/tmp/web|" -e "s|&||" /azkaban-web-2.5.0/bin/azkaban-web-start.sh && \
-    mkdir /tmp/executor && sed -i -e "s|^tmpdir=|tmpdir=/tmp/executor|" -e "s|&||" /azkaban-executor-2.5.0/bin/azkaban-executor-start.sh && \
-    sed -i -e "s|^executor.global.properties.*|executor.global.properties=/azkaban-executor-2.5.0/conf/global.properties|" -e "s|azkaban2|azkaban|" /azkaban-executor-2.5.0/conf/azkaban.properties &&\
+RUN sed -i -e "s|^executor.global.properties.*|executor.global.properties=/azkaban-executor-2.5.0/conf/global.properties|" -e "s|azkaban2|azkaban|" /azkaban-executor-2.5.0/conf/azkaban.properties &&\
     sed -i -e "s|azkaban.project.dir.*|azkaban.project.dir=/docker/projects|" /azkaban-executor-2.5.0/conf/azkaban.properties &&\
     cd /etc/service/azkaban-web && \
     keytool -keystore keystore -alias jetty -genkey -keyalg RSA -keypass password -storepass password -dname "CN=Unknown, OU=Unknown, O=Unknown,L=Unknown, ST=Unknown, C=Unknown" && \
