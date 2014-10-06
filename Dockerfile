@@ -84,8 +84,8 @@ RUN pip install --allow-external pattern
 #NLTK
 RUN pip install pyyaml nltk networkx biopython vincent
 
-#PyMongo
-RUN pip install pymongo gspread paramiko facebook pexpect
+RUN pip install pymongo gspread paramiko pexpect
+RUN pip install facebook-sdk httplib2 google-api-python-client
 
 EXPOSE 22 8443
 
