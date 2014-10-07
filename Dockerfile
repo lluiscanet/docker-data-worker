@@ -24,11 +24,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server && \
     sed -i -e "s|127.0.0.1|0.0.0.0|g" -e "s|max_allowed_packet.*|max_allowed_packet = 1024M|" /etc/mysql/my.cnf
 
 #Install Oracle Java 7
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python-software-properties && \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes python-software-properties && \
     add-apt-repository ppa:webupd8team/java -y && \
     DEBIAN_FRONTEND=noninteractive apt-get update && \
     echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y oracle-java7-installer
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes oracle-java7-installer
 
 #Azkaban Web Server
 RUN wget https://s3.amazonaws.com/azkaban2/azkaban2/2.5.0/azkaban-web-server-2.5.0.tar.gz && \
