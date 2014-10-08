@@ -66,7 +66,7 @@ RUN mysqld & sleep 3 && \
 
 # ************************** Installing Python requirements ****************************************************
 #Required by Python packages
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential python-dev python-pip liblapack-dev libatlas-dev gfortran libfreetype6 libfreetype6-dev libpng12-dev python-lxml libyaml-dev g++ libffi-dev pkg-config
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential libxml2-dev libxslt1-dev python-dev python-pip liblapack-dev libatlas-dev gfortran libfreetype6 libfreetype6-dev libpng12-dev python-lxml libyaml-dev g++ libffi-dev pkg-config
 
 #Upgrade pip
 RUN pip install -U setuptools
@@ -74,10 +74,13 @@ RUN pip install -U pip
 #matplotlib needs latest distribute
 RUN pip install -U distribute
 #Installing numpy
-RUN pip install -U numpy scipy pandas scikit-learn patsy
+RUN pip install -U numpy 
+RUN pip install -U scipy 
+RUN pip install -U pandas 
+RUN pip install -U scikit-learn patsy
 
 #Pandas
-RUN pip install pandas cython jinja2 pyzmq tornado numexpr bottleneck scipy pygments matplotlib sympy pymc statsmodels beautifulsoup4 html5lib
+RUN pip install pandas cython jinja2 pyzmq tornado numexpr pygments matplotlib sympy pymc statsmodels beautifulsoup4  html5lib
 
 #Pattern
 RUN pip install --allow-external pattern
